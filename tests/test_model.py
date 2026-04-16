@@ -54,20 +54,20 @@ class TestCalculatorMethods(unittest.TestCase):
 
 class TestCalculatorUsage(unittest.TestCase):
     def setUp(self):
-        self.calculator = Calculator()
+        self.sut = Calculator()
 
     def test_expression_insertion(self):
-        self.calculator.digit(1)
-        self.calculator.plus()
-        self.calculator.digit(2)
-        self.assertEqual("1+2", self.calculator.expression)
+        self.sut.digit(1)
+        self.sut.plus()
+        self.sut.digit(2)
+        self.assertEqual("1+2", self.sut.expression)
 
     def test_compute_result(self):
-        self.calculator.expression = "1+2"
-        self.assertEqual(3, self.calculator.compute_result())
+        self.sut.expression = "1+2"
+        self.assertEqual(3, self.sut.compute_result())
 
     def test_compute_result_with_invalid_expression(self):
-        self.calculator.expression = "1+"
+        self.sut.expression = "1+"
         with self.assertRaises(ValueError) as context:
-            self.calculator.compute_result()
+            self.sut.compute_result()
         self.assertEqual("Invalid expression: 1+", str(context.exception))
