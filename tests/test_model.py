@@ -4,30 +4,52 @@ from calculator import Calculator
 
 class TestCalculatorMethods(unittest.TestCase):
     def setUp(self):
-        self.calculator = Calculator()
+        self.sut = Calculator()
 
     def test_initial_expression_is_empty(self):
-        self.assertEqual("", self.calculator.expression)
+        self.assertEqual("", self.sut.expression)
 
     def test_digit(self):
-        self.calculator.digit(1)
-        self.assertEqual("1", self.calculator.expression)
+        expected_expression = ""
+        for i in range(0,10):
+            self.sut.digit(i)
+            expected_expression += f"{i}" 
+            
+    def test_wromng_digit(self):
+        try:
+            self.sut.digit(11)
+            self.fail()
+        except ValueError as e:
+            self.assertIn("Value must a digit in [0, 9]: ", str(e))
+
+    def test_wrong_digit_better(self):
+        with self.assertRaises(ValueError):
+            self.sut.digit(11)  
 
     def test_plus(self):
-        self.calculator.plus()
-        self.assertEqual("+", self.calculator.expression)
+        self.sut.plus()
+        self.assertEqual("+", self.sut.expression)
 
     def test_minus(self):
-        self.calculator.minus()
-        self.assertEqual("-", self.calculator.expression)
+        self.sut.minus()
+        self.assertEqual("-", self.sut.expression)
     
     def test_multiply(self):
-        self.calculator.multiply()
-        self.assertEqual("*", self.calculator.expression)
+        self.sut.multiply()
+        self.assertEqual("*", self.sut.expression)
     
     def test_divide(self):
-        self.calculator.divide()
-        self.assertEqual("/", self.calculator.expression)
+        self.sut.divide()
+        self.assertEqual("/", self.sut.expression)
+
+    def test_dot(self):
+        self.sut.dot()
+        self.assertEqual(".", self.sut.expression)
+    
+    def test_clear(self):
+        self.sut.divide()
+        self.sut.clear()
+        self.assertEqual("", self.sut.expression)
 
 
 class TestCalculatorUsage(unittest.TestCase):
