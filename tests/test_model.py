@@ -46,6 +46,24 @@ class TestCalculatorMethods(unittest.TestCase):
         self.sut.dot()
         self.assertEqual(".", self.sut.expression)
     
+    def test_power(self):
+        self.sut.power()
+        self.assertEqual("**", self.sut.expression)
+
+    def test_sqrt(self):
+        self.sut.sqrt()
+        #self.assertEqual("√", self.sut.expression)
+        self.assertEqual("**0.5", self.sut.expression)
+        #self.assertEqual("sqrt", self.sut.expression)
+
+    def test_opening_parenthesis(self):
+        self.sut.opening_parenthesis()
+        self.assertEqual("(", self.sut.expression)
+    
+    def test_closing_parenthesis(self):
+        self.sut.closing_parenthesis()
+        self.assertEqual(")", self.sut.expression)
+
     def test_clear(self):
         self.sut.divide()
         self.sut.clear()
@@ -60,7 +78,11 @@ class TestCalculatorUsage(unittest.TestCase):
         self.sut.digit(1)
         self.sut.plus()
         self.sut.digit(2)
-        self.assertEqual("1+2", self.sut.expression)
+        self.sut.plus()
+        self.sut.opening_parenthesis()
+        self.sut.digit(2)
+        self.sut.closing_parenthesis()
+        self.assertEqual("1+2+(2)", self.sut.expression)
 
     def test_compute_result(self):
         self.sut.expression = "1+2"

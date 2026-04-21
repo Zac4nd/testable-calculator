@@ -37,6 +37,18 @@ class Calculator:
     def dot(self):
         self._append(".")
 
+    def opening_parenthesis(self):
+        self._append("(")
+    
+    def closing_parenthesis(self):
+        self._append(")")
+
+    def sqrt(self):
+        self._append("**0.5")
+
+    def power(self):
+        self._append("**")
+
     def clear(self):
         self.expression = ""
     
