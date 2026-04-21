@@ -69,12 +69,19 @@ class TestExpressions(CalculatorGUITestCase):
         self.press_button("√")
         self.assert_display("(1+3)√")
 
+    def test_disposition_parenthesis_buttons(self):
+        ...
 
 class testNonFunctionalRequirements(CalculatorGUITestCase):
-    list_of_buttons_supposed_to_be_present = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", ".", "C", "=", "√", "**","(",")"}
+    list_of_buttons_supposed_to_be_present = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", ".", "C", "=", "√", "^","(",")"}
                                                        
     def test_buttons_presence(self):
         for button in self.list_of_buttons_supposed_to_be_present:
             with self.subTest("button " + button):
-                print("Pressing button: " + button)
+                #print("Pressing button: " + button)
+                print(f"Pressing button: {button.encode('ascii', 'replace').decode('ascii')}")
                 self.press_button(button)
+
+    def test_button_5(self):
+        self.press_button("5")
+        self.assert_display("5")

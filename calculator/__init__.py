@@ -18,8 +18,6 @@ class Calculator:
     
     def digit(self, value: int | str):
         value = self._ensure_is_digit(value)
-        if value == 5:
-            return
         self._append(value)
     
     def plus(self):

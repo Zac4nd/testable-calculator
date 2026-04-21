@@ -6,7 +6,7 @@ from calculator import Calculator
 
 
 BUTTONS_NAMES = [
-    ['(',')','√','**'],
+    ['(',')','√','^'],
     ['7', '8', '9', '/'],
     ['4', '5', '6', '*'],
     ['1', '2', '3', '-'],
@@ -70,7 +70,7 @@ class CalculatorApp(App):
                 self._calc.closing_parenthesis()
             case "√":
                 self._calc.sqrt()
-            case "**":
+            case "^":
                 self._calc.power()
             case ".":
                 self._calc.dot()
@@ -78,7 +78,7 @@ class CalculatorApp(App):
                 self._calc.clear()
             case _:
                 self._calc.digit(button.text)
-        self.display.text = self._calc.expression.replace("**0.5", "√") or "0"
+        self.display.text = self._calc.expression.replace("**0.5", "√").replace("**", "^") or "0"
 
 
 if __name__ == '__main__':

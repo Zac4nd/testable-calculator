@@ -10,10 +10,9 @@ class TestCalculatorMethods(unittest.TestCase):
         self.assertEqual("", self.sut.expression)
 
     def test_digit(self):
-        expected_expression = ""
         for i in range(0,10):
             self.sut.digit(i)
-            expected_expression += f"{i}" 
+        self.assertEqual(self.sut.expression, "0123456789")
             
     def test_wromng_digit(self):
         try:
